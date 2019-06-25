@@ -1,20 +1,4 @@
-@(heading "Abstract")
-
-@(text "{{Combinatorics}} provides some mechanisms for iterating over,
-reducing and mapping permutations (ordered subsets) and
-combinations (unordered subsets) of lists.")
-
-@(text "{{Combinatorics}} supports partial, i.e.
-''k''-permutations and partial, i.e. ''k''-combinations.")
-
-@(heading "Documentation")
-
 (define ordered-subset-for-each
-  @("Iterate over every ''k''-permutation (partial ordered subset) of {{list}},
-calling {{f}} for its side effect."
-    (f "The function to call")
-    (list "The list to permute")
-    (k "''k'' distinct elements (default: ''n'')"))
   (case-lambda
    ((f list)
     (ordered-subset-for-each f list (length list)))
@@ -32,14 +16,6 @@ calling {{f}} for its side effect."
             list))))))
 
 (define ordered-subset-fold
-  @("Recombine every ''k''-permutation (partial ordered subset) of {{list}},
-starting with a base-case {{nil}}, and calling {{cons}} with 1. a
-permutation and 2. the accumulated value."
-    (cons "The combining function")
-    (nil "The base case")
-    (list "The list to recombine")
-    (k "''k'' distinct elements (default: ''n'')")
-    (@to "object"))
   (case-lambda
    ((cons nil list)
     (ordered-subset-fold cons nil list (length list)))
@@ -52,11 +28,6 @@ permutation and 2. the accumulated value."
       (nil)))))
 
 (define ordered-subset-map
-  @("Map every ''k''-permutation (partial ordered subset) of {{list}} using {{f}}."
-    (f "The mapping function")
-    (list "The list to map")
-    (k "''k'' distinct elements (default: ''n'')")
-    (@to "list"))
   (case-lambda
    ((f list) (ordered-subset-map f list (length list)))
    ((f list k)
@@ -71,11 +42,6 @@ permutation and 2. the accumulated value."
 ;;; Thanks, Daniel Ángel Jiménez:
 ;;; <http://www.cs.utexas.edu/users/djimenez/utsa/cs3343/lecture25.html>.
 (define unordered-subset-for-each
-  @("Iterate over every ''k''-combination (partial unordered subset) of {{list}},
-calling {{f}} for its side effect."
-    (f "The function to call")
-    (list "The list to permute")
-    (k "''k'' distinct elements (default: ''n'')"))
   (case-lambda
    ((f list)
     (unordered-subset-for-each f list (length list)))
@@ -92,14 +58,6 @@ calling {{f}} for its side effect."
               (iter (add1 i) (add1 p)))))))))
 
 (define unordered-subset-fold
-  @("Recombine every ''k''-combination (partial unordered subset) of {{list}},
-starting with a base-case {{nil}}, and calling {{cons}} with 1. a
-combination and 2. the accumulated value."
-    (cons "The combining function")
-    (nil "The base case")
-    (list "The list to recombine")
-    (k "''k'' distinct elements (default: ''n'')")
-    (@to "object"))
   (case-lambda
    ((cons nil list)
     (unordered-subset-fold cons nil list (length list)))
@@ -113,36 +71,25 @@ combination and 2. the accumulated value."
       (nil)))))
 
 (define unordered-subset-map
-  @("Map every ''k''-combination (partial unordered subset) of {{list}} using {{f}}."
-    (f "The mapping function")
-    (list "The list to map")
-    (k "''k'' distinct elements (default: ''n'')")
-    (@to "list"))
   (case-lambda
    ((f list) (unordered-subset-map f list (length list)))
    ((f list k)
     (unordered-subset-fold (lambda (v a) (cons (f v) a)) '() list k))))
 
 (define permutation-for-each
-  @("Synonym for [[#ordered-subset-for-each]]")
   ordered-subset-for-each)
 
 (define permutation-fold
-  @("Synonym for [[#ordered-subset-fold]]")
   ordered-subset-fold)
 
 (define permutation-map
-  @("Synonym for [[#ordered-subset-map]]")
   ordered-subset-map)
 
 (define combination-for-each
-  @("Synonym for [[#unordered-subset-for-each]]")
   unordered-subset-for-each)
 
 (define combination-fold
-  @("Synonym for [[#unordered-subset-fold]]")
   unordered-subset-fold)
 
 (define combination-map
-  @("Synonym for [[#unordered-subset-map]]")
   unordered-subset-map)

@@ -12,9 +12,9 @@
    combination-for-each
    combination-map)
 
-  (import chicken scheme)
-
-  (use srfi-1
-       vector-lib)
+  (import scheme)
+  (import (chicken base))
+  (import srfi-1)
+  (import vector-lib)
 
   (include "combinatorics-core.scm"))
