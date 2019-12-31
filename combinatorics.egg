@@ -1,0 +1,12 @@
+;; -*- Scheme -*-
+
+(
+ (synopsis "Combinatorics functions")
+ (license "BSD")
+ (category data)
+ (dependencies srfi-1 vector-lib )
+ (test-dependencies test)
+ (author "Peter Danenberg")
+ (components (extension combinatorics))
+ )
+
